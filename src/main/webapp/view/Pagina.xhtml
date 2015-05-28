@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ht="http://xmlns.jcp.org/jsf/passthrough"      
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>    
+        
+    </h:head>
+    <ui:composition template="../template/JSFTemplatePages.xhtml">        
+        <ui:define name="content">
+            <h:form>
+                <!--<div class="panel" data-role="panel">
+                    <div class="panel-header">Pagina</div>
+                    <div class="panel-content">-->
+                        <nav class="navigation-bar white">
+                            <div class="navigation-bar-content">
+                                <div class="no-tablet-portrait">
+                                    <h:messages id="msgPage" errorClass="text-alert icon-cancel-2" infoClass="text-success icon-checkmark" 
+                                                warnClass="text-warning icon-warning" class="element input-element msgText span10 "/>
+                                </div>
+                                
+                                <p:commandButton value="" styleClass="element place-right icon-floppy"
+                                                actionListener="#{paginaBean.savePage()}" update="msgPage" />
+                                
+                                <p:commandButton value="" styleClass="element place-right icon-remove"
+                                                 actionListener="#{paginaBean.deletePage()}" update="msgPage" />
+                            </div>
+                        </nav>  
+
+                        <hr/>
+                        <div class="grid no-border fg-dark">                     
+                            <div class="row">
+                                <div class="span4">
+                                    <div class="row">
+                                        <div class="span1 text-middle">id</div>
+                                        <div class="span3">
+                                            <h:inputText id="txtIdPage" value="#{paginaBean.page.id}" styleClass="size1" />
+
+                                            <h:commandLink value="" style="font-size: 20px;" styleClass="icon-search">
+                                                <f:ajax execute="@form" render="tablePage msgPage"
+                                                         listener="#{paginaBean.findFilterPage()}"/>
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span1 text-middle">Nombre</div>
+                                        <div class="span3"><h:inputText value="#{paginaBean.page.nombre}" /></div>
+                                    </div>     
+                                    <div class="row">
+                                        <div class="span1 text-middle">Pantalla</div>
+                                        <div class="span3"><h:inputText value="#{paginaBean.page.pantalla}" /></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span1 text-middle">icono</div>
+                                        <div class="span3">
+                                            <p:selectOneMenu value="#{paginaBean.icono}" converter="iconoConverter"
+                                                             panelStyle="width:180px" effect="fade" var="t" 
+                                                             styleClass="span3" filter="true" filterMatchMode="startsWith">
+                                                <f:selectItems value="#{paginaBean.listIconos}" var="icono" 
+                                                               itemValue="#{icono}" itemLabel="#{icono.displayName}" />
+                                                <p:column style="width:13%">
+                                                    <h:outputText styleClass="#{t.nombre}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <h:outputText value="#{t.displayName}" />
+                                                </p:column>                                        
+                                            </p:selectOneMenu>                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span1 text-middle">Tipo Menu</div>
+                                        <div class="span3">
+                                            <p:selectOneMenu styleClass="span2" value="#{paginaBean.page.tipo}">
+                                                <f:selectItems value="#{sessionBean.tiposMenus}" />                                                                           
+                                            </p:selectOneMenu>                                           
+                                        </div>                            
+                                    </div>
+                                    <div class="row">
+                                        <div class="span1 text-middle">Status</div>
+                                        <div class="span3">
+                                            <p:selectOneMenu styleClass="span2" value="#{paginaBean.page.status}">
+                                                <f:selectItems value="#{sessionBean.listStatus}" />                                                                           
+                                            </p:selectOneMenu>                                           
+                                        </div>                            
+                                    </div>  
+                                </div>
+                                <div class="span9">
+                                    <p:dataTable id="tablePage" value="#{paginaBean.listaPage}" var="page"                                                     
+                                             paginator="true" rows="20" rowsPerPageTemplate="20,40,60"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             scrollable="true" scrollHeight="250" tableStyleClass="datatable"  >
+
+                                        <p:column headerText="ID" sortBy="#{page.id}" style="width: 10%;">
+                                            <p:commandLink value="#{page.id}">
+                                                <f:ajax execute="@form" event="click" render="@form"
+                                                        listener="#{configuracionBean.setPage(page)}"/>                                
+                                            </p:commandLink>
+                                        </p:column>
+                                        <p:column headerText="Nombre" sortBy="#{page.nombre}" style="width: 40%">                                                
+                                            <h:outputText styleClass="#{t.nombre}" value="#{page.nombre}"/>
+                                        </p:column>
+                                        <p:column headerText="Pantalla" sortBy="#{page.pantalla}" style="width: 40%">                                                
+                                            <h:outputText value="#{page.pantalla}"/>
+                                        </p:column>
+                                        <p:column headerText="Tipo Menu" sortBy="#{page.tipo}" style="width: 20%">                                                
+                                            <h:outputText value="#{page.tipo}"/>
+                                        </p:column>                                                                                
+                                    </p:dataTable>
+
+                                </div>
+                            </div>
+                        </div>  
+                    <!--</div>
+                </div>-->
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>

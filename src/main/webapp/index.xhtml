@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ht="http://xmlns.jcp.org/jsf/passthrough"      
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>        
+        
+    </h:head>
+    <ui:composition template="template/JSFTemplate.xhtml">        
+        <ui:define name="content">
+            <h:form>
+                <div class="panel login span7"><center>
+                    <div class="panel-header bg-morado">Sistema de Ventas</div>
+                    <div class="panel-content">
+                        <h:messages id="msg" errorClass="text-alert icon-cancel" infoClass="text-info  icon-info" />
+                        <hr/>
+                        <table class="no-border">
+                            <tr>
+                                <td class="span2"><i class="icon-user"/> Usuario</td>
+                                <td class="span4">
+                                    <h:inputText id="txtUsuario" ht:placeholder="Usuario" 
+                                                 ht:type="text" ht:required="required" size="30"                                                 
+                                                 value="#{loginBean.user.usuario}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="icon icon-key-2"/> Password</td>
+                                <td>
+                                    <h:inputSecret id="txtPassword" ht:placeholder="password" 
+                                                 ht:type="password" ht:required="required" size="30"
+                                                 value="#{loginBean.user.password}"/>
+                                </td>
+                            </tr>                            
+                        </table>
+                        <hr/>
+                        <p:commandButton id="cmdLogin" value="Login" class="large bg-morado fg-white span6" action="#{loginBean.login()}"/>                    
+                    </div>
+                </center></div>
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>
+
